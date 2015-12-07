@@ -1,0 +1,21 @@
+DROP DATABASE IF EXISTS test;
+CREATE DATABASE test;
+
+# user
+DROP TABLE IF EXISTS test.users;
+CREATE TABLE test.user(
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
+  username VARCHAR(255),
+  password VARCHAR(255)
+);
+
+#word
+DROP TABLE IF EXISTS test.word;
+CREATE TABLE test.word(
+  id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
+  english VARCHAR(255),
+  chinese VARCHAR(255)
+);
+
+use test;
+SELECT * FROM word;

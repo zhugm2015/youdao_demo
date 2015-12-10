@@ -2,23 +2,22 @@
   Created by IntelliJ IDEA.
   User: BH00350
   Date: 2015/12/7
-  Time: 9:26
+  Time: 14:05
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>default page</title>
+    <title>sign up page</title>
 </head>
 <body>
-<h1>default page</h1>
+<h1>sign up page</h1>
 <form action="user" method="post">
-  <input type="hidden" name="action" value="login"/>     <%--隐藏域--%>
+  <input type="hidden" name="action" value="signup"/>
   username:<input name="username"/><br/>
   password:<input name="password" type="password"/><br/>
-  <input type="submit" value="LOGIN"/>
+  <input type="submit" value="SIGN UP"/>
 </form>
-${requestScope.message}<br/>
-<a href="signup.jsp">SIGN UP</a>
+
 </body>
 </html>

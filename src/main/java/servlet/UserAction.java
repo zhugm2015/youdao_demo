@@ -51,7 +51,6 @@ public class UserAction extends HttpServlet {
             resultSet=preparedStatement.executeQuery();
             if (resultSet.next()) {
                 req.getSession().setAttribute("username", username);
-                //resp.sendRedirect("index.jsp");     //重定向到index
                 resp.sendRedirect("word?action=query");
             } else {
                 req.setAttribute("message","error.");

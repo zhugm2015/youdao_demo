@@ -35,7 +35,6 @@ public class DB {
                 e.printStackTrace();
             }
         }
-
         if (preparedStatement!=null) {
             try {
                 preparedStatement.close();

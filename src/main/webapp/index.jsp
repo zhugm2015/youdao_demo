@@ -1,18 +1,19 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: BH00350
-  Date: 2015/12/7
-  Time: 8:51
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>index page</title>
+    <script>
+        function del(){
+            return confirm("DEL?")
+        }
+    </script>
 </head>
 <body>
+<c:if test="${sessionScope.username eq null}">
+    <c:redirect url="/"/>
+</c:if>
 <h1>indext page</h1>
 welcom:${sessionScope.username}<br/>
 <a href="user?action=logout">LOG OUT</a>
@@ -45,9 +46,9 @@ welcom:${sessionScope.username}<br/>
             <td>${vs.count}</td>
             <td>${word.english}</td>
             <td>${word.chinese}</td>
+            <td><a href="word?action=search&id=${word.id}">EDIT</a></td>
+            <td><a href="word?action=delete&id=${word.id}" onclick="return del()">DELETE</a></td>
         </tr>
-
-
     </c:forEach>
 </table>
 </body>

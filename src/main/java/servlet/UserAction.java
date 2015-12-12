@@ -29,7 +29,15 @@ public class UserAction extends HttpServlet {
         if (action.equals("logout")) {
             logout(req,resp);
         }
+        if (action.equals("check")) {
+            check(req,resp);
+        }
 
+    }
+
+    private void check(HttpServletRequest req, HttpServletResponse resp) {
+        String username=req.getParameter("username");
+        System.out.println(username);
     }
 
     //ÍË³ö

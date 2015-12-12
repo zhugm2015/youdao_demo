@@ -3,6 +3,9 @@ package test;
 //import com.fasterxml.jackson.core.JsonProcessingException;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.fasterxml.jackson.databind.SerializationFeature;
+//import com.google.gson.Gson;
+//import com.google.gson.GsonBuilder;
+import com.alibaba.fastjson.JSON;
 import com.sun.org.apache.xpath.internal.SourceTree;
 import model.Word;
 //import org.json.JSONArray;
@@ -54,7 +57,7 @@ public class JSONTest {
 
      /*// 2.jackson
      ObjectMapper objectMapper = new ObjectMapper();
-     objectMapper.configure(SerializationFeature.INDENT_OUTPUT,true); //配置
+     objectMapper.configure(SerializationFeature.INDENT_OUTPUT,true); //格式化
      Word word = new Word(1,"english","中文");
      List<Object>list=new ArrayList<>();
      list.add("string");
@@ -74,9 +77,23 @@ public class JSONTest {
      } catch (IOException e) {
       e.printStackTrace();
      }*/
-   //3.gson
+   /*//3.gson
+     Word word = new Word(1,"english","中文");
+     Gson gson = new GsonBuilder().setPrettyPrinting().create();
+     String json = gson.toJson(word);  // 1 object -> json字符串
+     System.out.println(json);
+
+     Word newWord = gson.fromJson(json,Word.class);  // 2 json字符串 -> object
+     System.out.println(newWord.getChinese());*/
+
+     /*//4.fastjson
+     Word word = new Word(1,"english","中文");
+     String json= JSON.toJSONString(word);
+     System.out.println(json);
+
+     Word newWord =JSON.parseObject(json,Word.class);
+     System.out.println(newWord.getChinese());*/
+
 
     }
-
-
 }

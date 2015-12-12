@@ -22,5 +22,6 @@ dependencies {
     compile 'jstl:jstl:1.2'
    // compile 'org.json:json:20151123'
     //compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
-    compile 'com.google.code.gson:gson:2.5'
+    //compile 'com.google.code.gson:gson:2.5'
+    //compile 'com.alibaba:fastjson:1.2.7'
 }

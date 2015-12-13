@@ -1,6 +1,10 @@
 package servlet;
 
+import model.User;
+import model.Word;
+import org.apache.ibatis.session.SqlSession;
 import util.DB;
+import util.SqlSessionUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -83,11 +87,17 @@ public class UserAction extends HttpServlet {
         }finally {
             DB.close(resultSet,preparedStatement);
         }
+        /*SqlSession sqlSession=SqlSessionUtil.getSqlSession();
+        User user = new User(null,req.getParameter("username"),req.getParameter("password"));
+        sqlSession.selectOne("user.login",user);
+        sqlSession.commit();
+        sqlSession.close();
+        resp.sendRedirect("word?action=query");*/
     }
 
     //注册
-    private void signup(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String username = req.getParameter("username");  //req.getParameter（）获取用户填写的表单参数
+    private void signup(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+       /* String username = req.getParameter("username");  //req.getParameter（）获取用户填写的表单参数
         String password=req.getParameter("password");
         PreparedStatement preparedStatement=null;         // statement用来执行SQL语句
         try {
@@ -100,7 +110,13 @@ public class UserAction extends HttpServlet {
             e.printStackTrace();
         }finally {
             DB.close(null,preparedStatement);       //关闭数据库
-        }
+        }*/
+
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        sqlSession.insert("user.signup", new User(null, req.getParameter("username"), req.getParameter("password")));
+        sqlSession.commit();
+        sqlSession.close();
+        resp.sendRedirect("default.jsp");
     }
 
     @Override

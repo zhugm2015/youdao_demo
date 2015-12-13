@@ -34,7 +34,7 @@ public class UserAction extends HttpServlet {
         }
 
     }
-
+    //检测是否有相同的用户名存在
     private void check(HttpServletRequest req, HttpServletResponse resp) {
         String username=req.getParameter("username");
         System.out.println(username);
@@ -44,6 +44,20 @@ public class UserAction extends HttpServlet {
     private void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.getSession().invalidate();
         resp.sendRedirect("default.jsp");
+        /*String sql="select * from user where username=?";
+        PreparedStatement preparedStatement=null;
+        ResultSet resultSet=null;
+        try {
+            preparedStatement=DB.getConnection().prepareStatement(sql);
+            preparedStatement.setString(1,"username");
+            resultSet=preparedStatement.executeQuery();
+            resultSet.next();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            DB.close(resultSet,preparedStatement);
+        }*/
     }
 
     //登录

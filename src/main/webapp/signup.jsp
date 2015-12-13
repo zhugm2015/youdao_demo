@@ -16,7 +16,7 @@
         var username=$('#username').val();    //username取值
         $.ajax({
           url:'user?action=check',
-          data:{"username":username}         //键值对
+          data:{"username":username}         //取键值给服务器
         });
       })
     });

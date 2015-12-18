@@ -43,11 +43,8 @@ public class UserAction extends HttpServlet {
     }
     //检测是否有相同的用户名存在
     private void check(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        /*String username=req.getParameter("username");
-        System.out.println(username);*/
-        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession(false);
         User user = sqlSession.selectOne("user.check",new User(null,req.getParameter("username"),null));
-        sqlSession.commit();
         sqlSession.close();
         ObjectMapper objectMapper = new ObjectMapper();
         Map<String,Boolean> map = new HashMap<>();
@@ -67,7 +64,7 @@ public class UserAction extends HttpServlet {
     }
 
     //登录
-    private void login(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         String username=req.getParameter("username");
         String password=req.getParameter("password");
         PreparedStatement preparedStatement=null;
@@ -90,9 +87,8 @@ public class UserAction extends HttpServlet {
             DB.close(resultSet,preparedStatement);
         }
 
-        /*SqlSession sqlSession=SqlSessionUtil.getSqlSession();
-        User user = sqlSession.selectOne("user.login",new User(null, req.getParameter("username"), req.getParameter("password")));
-        sqlSession.commit();
+        /*SqlSession sqlSession = SqlSessionUtil.getSqlSession(false);
+        User user = sqlSession.selectOne("user.login", new User(null, req.getParameter("username"), req.getParameter("password")));
         sqlSession.close();
         if (user != null) {
             req.getSession().setAttribute("user", user);
@@ -105,9 +101,9 @@ public class UserAction extends HttpServlet {
 
     //注册
     private void signup(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession(true);
         sqlSession.insert("user.signup", new User(null, req.getParameter("username"), req.getParameter("password")));
-        sqlSession.commit();
+       // sqlSession.commit();
         sqlSession.close();
         resp.sendRedirect("default.jsp");
     }

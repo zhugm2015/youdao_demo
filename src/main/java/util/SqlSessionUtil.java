@@ -25,11 +25,12 @@ public class SqlSessionUtil {
         return sqlSessionFactory;
     }
 
-    public static SqlSession getSqlSession(){
-        return getSqlSessionFactory().openSession();
-    }
+    /*public static SqlSession getSqlSession(){
 
-   /* public static SqlSession getSqlSession(boolean autoCommit){
-        return getSqlSessionFactory().openSession(autoCommit);
+        return getSqlSessionFactory().openSession();
     }*/
+
+   public static SqlSession getSqlSession(boolean autoCommit){
+        return getSqlSessionFactory().openSession(autoCommit);
+    }
 }

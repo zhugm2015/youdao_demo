@@ -49,9 +49,8 @@ public class WordAction extends HttpServlet {
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         //方式一：jdbc
         //方式二：mybatis
-        SqlSession sqlSession=SqlSessionUtil.getSqlSession(true);
+        SqlSession sqlSession=SqlSessionUtil.getSqlSession(true);        //sqlSession.commit();
         sqlSession.delete("word.delete", getWord(req));
-        //sqlSession.commit();
         sqlSession.close();
         resp.sendRedirect("word?action=query");
     }
@@ -59,11 +58,9 @@ public class WordAction extends HttpServlet {
     private void update(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         SqlSession sqlSession=SqlSessionUtil.getSqlSession(true);
         sqlSession.update("word.update", getWord(req));
-        //sqlSession.commit();
         sqlSession.close();
         resp.sendRedirect("word?action=query");
     }
-
 
     private void add(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         SqlSession sqlSession= SqlSessionUtil.getSqlSession(true);
@@ -75,8 +72,7 @@ public class WordAction extends HttpServlet {
 
     private void search(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         SqlSession sqlSession=SqlSessionUtil.getSqlSession(false);
-        req.getSession().setAttribute("word",sqlSession.selectOne("word.search",getWord(req)));
-        //sqlSession.commit();
+        req.getSession().setAttribute("word", sqlSession.selectOne("word.search",getWord(req)));
         sqlSession.close();
         resp.sendRedirect("edit.jsp");
     }

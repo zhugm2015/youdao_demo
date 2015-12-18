@@ -15,10 +15,10 @@
 
 <form action="word" method="post">
   <input type="hidden" name="action" value="update"/>
-  <input type="hidden" name="id" value="${sessionScope.word.id}"/>
-  english:<input name="english" value="${sessionScope.word.english}"/><br/>
-  chinese:<input name="chinese" value="${sessionScope.word.chinese}"/><br/>
-  <input type="submit" value="UPDATE"/>
+  <input type="hidden" name="id" value="${sessionScope.word.id}">
+  english:<input name="english" value="${sessionScope.word.english}"><br/>
+  chinese:<input name="chinese" value="${sessionScope.word.chinese}"><br/>
+  <input type="submit" value="UPDATE">
 </form>
 </body>
 </html>

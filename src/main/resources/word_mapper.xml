@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="word">
+    <insert id="add" parameterType="model.Word" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO word VALUES (NULL ,#{english},#{chinese})
+    </insert>
+    <select id="query" parameterType="model.Word" resultType="model.Word">
+        SELECT * FROM word
+    </select>
+    <select id="search" parameterType="model.Word" resultType="model.Word">
+        SELECT * FROM word WHERE id=#{id}
+    </select>
+    <update id="update" parameterType="model.Word">
+        UPDATE word SET english=#{english},chinese=#{chinese}WHERE id=#{id}
+    </update>
+    <delete id="delete" parameterType="model.Word">
+        DELETE FROM word WHERE id=#{id}
+    </delete>
+</mapper>

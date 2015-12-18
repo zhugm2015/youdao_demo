@@ -16,7 +16,15 @@
         var username=$('#username').val();    //username取值
         $.ajax({
           url:'user?action=check',
-          data:{"username":username}         //取键值给服务器
+          data:{"username":username} ,        //取键值给服务器
+          dataType:'json',
+          success:function(result){
+            if (result.isUsernameExist) {
+              $('#hint').text("username is exist!");
+            } else {
+              $('#hint').text("username is available!");
+            }
+          }
         });
       })
     });
@@ -25,10 +33,10 @@
 <body>
 <h1>sign up page</h1>
 <form action="user" method="post">
-  <input type="hidden" name="action" value="signup"/>
-  username:<input id="username" name="username"/><br/>
-  password:<input name="password" type="password"/><br/>
-  <input type="submit" value="SIGN UP"/>
+  <input type="hidden" name="action" value="signup">
+  username:<input id="username" name="username"><span id="hint"></span><br/>
+  password:<input name="password" type="password"><br/>
+  <input type="submit" value="SIGN UP">
 </form>
 ${requestScope.message}
 </body>

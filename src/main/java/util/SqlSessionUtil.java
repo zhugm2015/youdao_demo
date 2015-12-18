@@ -13,8 +13,9 @@ import java.io.InputStream;
  */
 public class SqlSessionUtil {
     private static SqlSessionFactory sqlSessionFactory;
-    public static SqlSessionFactory getSqlSessionFactory(){
-        if (sqlSessionFactory==null) {
+
+    private static SqlSessionFactory getSqlSessionFactory() {
+        if (sqlSessionFactory == null) {
             try {
                 sqlSessionFactory = new SqlSessionFactoryBuilder().build(Resources.getResourceAsStream("mybatis-config.xml"));
             } catch (IOException e) {
@@ -27,4 +28,8 @@ public class SqlSessionUtil {
     public static SqlSession getSqlSession(){
         return getSqlSessionFactory().openSession();
     }
+
+   /* public static SqlSession getSqlSession(boolean autoCommit){
+        return getSqlSessionFactory().openSession(autoCommit);
+    }*/
 }

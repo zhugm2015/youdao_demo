@@ -13,10 +13,10 @@
 <body>
 <h1>default page</h1>
 <form action="user" method="post">
-  <input type="hidden" name="action" value="login"/>     <%--隐藏域--%>
+  <input type="hidden" name="action" value="login">     <%--隐藏域--%>
   username:<input name="username"/><br/>
   password:<input name="password" type="password"/><br/>
-  <input type="submit" value="LOGIN"/>
+  <input type="submit" value="LOGIN">
 </form>
 ${requestScope.message}<br/>
 <a href="signup.jsp">SIGN UP</a>

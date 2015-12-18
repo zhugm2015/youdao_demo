@@ -1,5 +1,6 @@
 package servlet;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import model.User;
 import model.Word;
 import org.apache.ibatis.session.SqlSession;
@@ -15,6 +16,8 @@ import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by BH00350 on 2015/12/7.
@@ -39,29 +42,28 @@ public class UserAction extends HttpServlet {
 
     }
     //检测是否有相同的用户名存在
-    private void check(HttpServletRequest req, HttpServletResponse resp) {
-        String username=req.getParameter("username");
-        System.out.println(username);
+    private void check(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        /*String username=req.getParameter("username");
+        System.out.println(username);*/
+        SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        User user = sqlSession.selectOne("user.check",new User(null,req.getParameter("username"),null));
+        sqlSession.commit();
+        sqlSession.close();
+        ObjectMapper objectMapper = new ObjectMapper();
+        Map<String,Boolean> map = new HashMap<>();
+        if (user!=null) {
+            map.put("isUsernameExist",true);
+        } else {
+            map.put("isUsernameExist",false);
+        }
+        resp.setContentType("application/json;charset=utf-8");
+        resp.getWriter().print(objectMapper.writeValueAsString(map));
     }
 
     //退出
     private void logout(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.getSession().invalidate();
         resp.sendRedirect("default.jsp");
-        /*String sql="select * from user where username=?";
-        PreparedStatement preparedStatement=null;
-        ResultSet resultSet=null;
-        try {
-            preparedStatement=DB.getConnection().prepareStatement(sql);
-            preparedStatement.setString(1,"username");
-            resultSet=preparedStatement.executeQuery();
-            resultSet.next();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DB.close(resultSet,preparedStatement);
-        }*/
     }
 
     //登录
@@ -87,31 +89,22 @@ public class UserAction extends HttpServlet {
         }finally {
             DB.close(resultSet,preparedStatement);
         }
+
         /*SqlSession sqlSession=SqlSessionUtil.getSqlSession();
-        User user = new User(null,req.getParameter("username"),req.getParameter("password"));
-        sqlSession.selectOne("user.login",user);
+        User user = sqlSession.selectOne("user.login",new User(null, req.getParameter("username"), req.getParameter("password")));
         sqlSession.commit();
         sqlSession.close();
-        resp.sendRedirect("word?action=query");*/
+        if (user != null) {
+            req.getSession().setAttribute("user", user);
+            resp.sendRedirect("word?action=query");
+        } else {
+            req.setAttribute("message", "error.");
+            req.getRequestDispatcher("default.jsp").forward(req, resp);
+        }*/
     }
 
     //注册
     private void signup(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-       /* String username = req.getParameter("username");  //req.getParameter（）获取用户填写的表单参数
-        String password=req.getParameter("password");
-        PreparedStatement preparedStatement=null;         // statement用来执行SQL语句
-        try {
-            preparedStatement= DB.getConnection().prepareStatement("INSERT INTO user VALUES (NULL,?,?)");  //连接数据库
-            preparedStatement.setString(1,username);
-            preparedStatement.setString(2,password);
-            preparedStatement.executeUpdate();
-            resp.sendRedirect("default.jsp");           //抛异常
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DB.close(null,preparedStatement);       //关闭数据库
-        }*/
-
         SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         sqlSession.insert("user.signup", new User(null, req.getParameter("username"), req.getParameter("password")));
         sqlSession.commit();

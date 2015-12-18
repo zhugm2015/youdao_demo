@@ -1,7 +1,9 @@
 package servlet;
 
 import model.Word;
+import org.apache.ibatis.session.SqlSession;
 import util.DB;
+import util.SqlSessionUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +22,7 @@ import java.util.List;
  */
 @WebServlet(urlPatterns = "/word")
 public class WordAction extends HttpServlet {
+
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
 
@@ -41,68 +44,41 @@ public class WordAction extends HttpServlet {
         if (action.equals("delete")) {
             delete(req,resp);
         }
-
     }
 
     private void delete(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String sql="delete from word where id=?";
-        try {
-            preparedStatement=DB.getConnection().prepareStatement(sql);
-            preparedStatement.setInt(1,Integer.parseInt(req.getParameter("id")));
-            preparedStatement.executeUpdate();
-            resp.sendRedirect("word?action=query");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        //方式一：jdbc
+        //方式二：mybatis
+        SqlSession sqlSession=SqlSessionUtil.getSqlSession();
+        sqlSession.delete("word.delete",getWord(req));
+        sqlSession.commit();
+        sqlSession.close();
+        resp.sendRedirect("word?action=query");
     }
 
     private void update(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String sql="update word set english=?,chinese=? where id=?";
-        try {
-            preparedStatement=DB.getConnection().prepareStatement(sql);
-            preparedStatement.setString(1,req.getParameter("english"));
-            preparedStatement.setString(2,req.getParameter("chinese"));
-            preparedStatement.setInt(3, Integer.parseInt(req.getParameter("id")));
-            preparedStatement.executeUpdate();
-            resp.sendRedirect("word?action=query");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        SqlSession sqlSession=SqlSessionUtil.getSqlSession();
+        sqlSession.update("word.update",getWord(req));
+        sqlSession.commit();
+        sqlSession.close();
+        resp.sendRedirect("word?action=query");
     }
 
 
     private void add(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String sql = "INSERT INTO word VALUES(NULL, ?, ?)";
-        try {
-            preparedStatement= DB.getConnection().prepareStatement(sql);
-            preparedStatement.setString(1,req.getParameter("english"));
-            preparedStatement.setString(2,req.getParameter("chinese"));
-            preparedStatement.executeUpdate();
-            resp.sendRedirect("word?action=query");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DB.close(null,preparedStatement);
-        }
+        SqlSession sqlSession= SqlSessionUtil.getSqlSession();
+        sqlSession.insert("word.add",getWord(req));
+        sqlSession.commit();
+        sqlSession.close();
+        resp.sendRedirect("word?action=query");
     }
+
     private void search(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String sql="select * from word where id=?";
-        try {
-            preparedStatement=DB.getConnection().prepareStatement(sql);
-            preparedStatement.setInt(1,Integer.parseInt(req.getParameter("id")));
-            resultSet=preparedStatement.executeQuery();
-            Word word=null;
-            if (resultSet.next()) {
-               word=new Word(resultSet.getInt("id"),resultSet.getString("english"),resultSet.getString("chinese"));
-            }
-            req.getSession().setAttribute("word",word); //request.getSession().setAttribute(“绑定名”,绑定值);这段代码的意思就是：获取session对象,然后把要绑定对象/值 帮定到session对象上，用户的一次会话共享一个session对象
-            resp.sendRedirect("edit.jsp");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            DB.close(resultSet,preparedStatement);
-        }
+        SqlSession sqlSession=SqlSessionUtil.getSqlSession();
+        req.getSession().setAttribute("word",sqlSession.selectOne("word.search",getWord(req)));
+        sqlSession.commit();
+        sqlSession.close();
+        resp.sendRedirect("edit.jsp");
     }
 
     /*  1/List中可以添加任何对象，包括自己定义的新的类。
@@ -111,23 +87,20 @@ public class WordAction extends HttpServlet {
         ArrayList就是传说中的动态数组：动态的增加和减少元素
         List 集合中的对象按照一定的顺序排放，里面的内容可以重复。List接口实现的类：ArrayList(实现动态数组)， Vector（实现动态数组） ，LinkedList（实现链表）， Stack（实现堆栈）*/
     private void query(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        String sql="select * from word";
-        try {
-            preparedStatement=DB.getConnection().prepareStatement(sql);
-            resultSet=preparedStatement.executeQuery();
-            List<Word> words = new ArrayList<>();
-            while (resultSet.next()) {
-                Word word = new Word(resultSet.getInt("id"),resultSet.getString("english"),resultSet.getString("chinese"));
-                words.add(word);
-            }
-            req.getSession().setAttribute("words",words);
-            resp.sendRedirect("index.jsp");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }finally {
-            DB.close(resultSet,preparedStatement);
-        }
+        SqlSession sqlSession=SqlSessionUtil.getSqlSession();
+        req.getSession().setAttribute("words",sqlSession.selectList("word.query"));
+        sqlSession.close();  //查询可以不用commit
+        resp.sendRedirect("index.jsp");
     }
+
+    private Word getWord(HttpServletRequest req) {
+        Integer id = null;
+        if (req.getParameter("id") != null) {
+            id = Integer.parseInt(req.getParameter("id"));
+        }
+        return new Word(id, req.getParameter("english"), req.getParameter("chinese"));
+    }
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);

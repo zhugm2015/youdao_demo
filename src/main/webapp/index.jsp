@@ -1,4 +1,3 @@
-<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -19,10 +18,10 @@ welcom:${sessionScope.username}<br/>
 <a href="user?action=logout">LOG OUT</a>
 <hr/>
 <form action="word" method="post">
-    <input type="hidden" name="action" value="add"/>
-    english:<input name="english"/><br/>
-    chinese:<input name="chinese"/><br/>
-    <input type="submit" value="ADD"/>
+    <input type="hidden" name="action" value="add">
+    english:<input name="english"><br/>
+    chinese:<input name="chinese"><br/>
+    <input type="submit" value="ADD">
 </form>
 <hr/>
 <table border="1">

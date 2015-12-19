@@ -12,23 +12,23 @@
           <element id="dir-copy" path="$PROJECT_DIR$/build/resources/main" />
         </element>
         <element id="directory" name="lib">
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/mysql/mysql-connector-java/5.1.37/2c378637f6faff77541244e8257b446f04324bd8/mysql-connector-java-5.1.37.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/javax/javaee-api/7.0/51399f902cc27a808122edcbebfaa1ad989954ba/javaee-api-7.0.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/jstl/jstl/1.2/74aca283cd4f4b4f3e425f5820cda58f44409547/jstl-1.2.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-databind/2.5.3/c37875ff66127d93e5f672708cb2dcc14c8232ab/jackson-databind-2.5.3.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/org.mybatis/mybatis/3.3.0/7c0e3582a1518b6d8e4e37ce2fc49b7bb6f2040f/mybatis-3.3.0.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/commons-codec/commons-codec/1.9/9ce04e34240f674bc72680f8b843b1457383161a/commons-codec-1.9.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/org.springframework/spring-context/4.2.4.RELEASE/23cd0109e4eafc5629547e3680b0c4031e82efdd/spring-context-4.2.4.RELEASE.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/com.sun.mail/javax.mail/1.5.0/ec2410fdf7e0a3022e7c2a2e6241039d1abc1e98/javax.mail-1.5.0.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-annotations/2.5.0/a2a55a3375bc1cef830ca426d68d2ea22961190e/jackson-annotations-2.5.0.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/com.fasterxml.jackson.core/jackson-core/2.5.3/a8b8a6dfc8a17890e4c7ff8aed810763d265b68b/jackson-core-2.5.3.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/org.springframework/spring-aop/4.2.4.RELEASE/3329cf71b4bc49c9767ca4f0704ed7b773f29fba/spring-aop-4.2.4.RELEASE.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/org.springframework/spring-beans/4.2.4.RELEASE/dc8e0874b53435f3e277d9da5aebd8b93cc7cf64/spring-beans-4.2.4.RELEASE.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/org.springframework/spring-core/4.2.4.RELEASE/160ccd89230753d4f49477a967f5876b034d9745/spring-core-4.2.4.RELEASE.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/org.springframework/spring-expression/4.2.4.RELEASE/15b6f6d61bc68fe2cc6cbd63e2329601afb8b39/spring-expression-4.2.4.RELEASE.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/javax.activation/activation/1.1/e6cb541461c2834bdea3eb920f1884d1eb508b50/activation-1.1.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/aopalliance/aopalliance/1.0/235ba8b489512805ac13a8f9ea77a1ca5ebe3e8/aopalliance-1.0.jar" />
-          <element id="file-copy" path="D:/caches/modules-2/files-2.1/commons-logging/commons-logging/1.2/4bfc12adfe4842bf07b657f0369c4cb522955686/commons-logging-1.2.jar" />
+          <element id="library" level="project" name="Gradle: mysql:mysql-connector-java:5.1.37" />
+          <element id="library" level="project" name="Gradle: javax:javaee-api:7.0" />
+          <element id="library" level="project" name="Gradle: com.sun.mail:javax.mail:1.5.0" />
+          <element id="library" level="project" name="Gradle: javax.activation:activation:1.1" />
+          <element id="library" level="project" name="Gradle: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Gradle: org.mybatis:mybatis:3.3.0" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.3" />
+          <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.9" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" />
+          <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.3" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-aop:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-beans:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-core:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.2.4.RELEASE" />
+          <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
+          <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
         </element>
       </element>
       <element id="directory" name="META-INF">

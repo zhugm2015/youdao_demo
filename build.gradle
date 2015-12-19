@@ -26,5 +26,6 @@ dependencies {
     //compile 'com.alibaba:fastjson:1.2.7'
     compile 'org.mybatis:mybatis:3.3.0'
     compile 'commons-codec:commons-codec:1.9'
+    compile 'org.springframework:spring-context:4.2.4.RELEASE'
 
 }

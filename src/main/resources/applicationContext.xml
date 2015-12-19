@@ -2,10 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
        <bean id="floppyWriter" class="ioc.c.FloppyWriter"/>
        <bean id="usbWriter" class="ioc.c.USBWriter"/>
-       <bean id="business" class="ioc.a.Business">
-              <property name="deviceWriter" ref="floppyWriter"/>
+       <bean id="business" class="ioc.c.Business">
+            <property name="deviceWriter" ref="usbWriter"/>
        </bean>
-
 </beans>

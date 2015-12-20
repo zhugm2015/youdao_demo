@@ -27,5 +27,7 @@ dependencies {
     compile 'org.mybatis:mybatis:3.3.0'
     compile 'commons-codec:commons-codec:1.9'
     compile 'org.springframework:spring-context:4.2.4.RELEASE'
+    compile 'org.projectlombok:lombok:1.16.6'
+    compile 'org.mybatis:mybatis-spring:1.2.3'
 
 }

@@ -16,7 +16,7 @@
                 </environment>
         </environments>
         <mappers>
-                <mapper resource="user_mapper.xml"/>
-                <mapper resource="word_mapper.xml"/>
+                <mapper resource="mapper/user_mapper.xml"/>
+                <mapper resource="mapper/word_mapper.xml"/>
         </mappers>
 </configuration>

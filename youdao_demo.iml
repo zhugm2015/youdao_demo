@@ -55,5 +55,7 @@
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-expression:4.2.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: aopalliance:aopalliance:1.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.projectlombok:lombok:1.16.6" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.mybatis:mybatis-spring:1.2.3" level="project" />
   </component>
 </module>

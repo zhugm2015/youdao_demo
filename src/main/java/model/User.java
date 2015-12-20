@@ -1,16 +1,24 @@
 package model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
  * Created by Administrator on 2015/12/13.
  */
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+//Ä£ÐÍÀà
 public class User implements Serializable {
     private Integer id;
     private String username;
     private String password;
 
-    public User() {
+    /*public User() {
     }
 
     public User(Integer id, String username, String password) {
@@ -41,5 +49,5 @@ public class User implements Serializable {
 
     public void setPassword(String password) {
         this.password = password;
-    }
+    }*/
 }

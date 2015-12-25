@@ -65,7 +65,7 @@ public class UserAction extends HttpServlet {
 
     //登录
     private void login(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String username=req.getParameter("username");
+        String username=req.getParameter("username");  //req.getParameter（）获取用户填写的表单参数
         String password=req.getParameter("password");
         PreparedStatement preparedStatement=null;
         ResultSet resultSet=null;     // resultSet结果集
@@ -87,7 +87,7 @@ public class UserAction extends HttpServlet {
             DB.close(resultSet,preparedStatement);
         }
 
-        /*SqlSession sqlSession = SqlSessionUtil.getSqlSession(false);
+       /* SqlSession sqlSession = SqlSessionUtil.getSqlSession(false);
         User user = sqlSession.selectOne("user.login", new User(null, req.getParameter("username"), req.getParameter("password")));
         sqlSession.close();
         if (user != null) {

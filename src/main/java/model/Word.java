@@ -1,5 +1,9 @@
 package model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.io.Serializable;
 
 /**
@@ -7,12 +11,15 @@ import java.io.Serializable;
  */
 //Serializable序列化这个接口比较特殊，没有抽象方法
 //alt + inset 快捷键可以创建构造方法及..
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Word implements Serializable{
     private Integer id;
     private String english;
     private String chinese;
 
-    public Word() {
+   /* public Word() {
     }
 
     public Word(Integer id, String english, String chinese) {
@@ -43,7 +50,7 @@ public class Word implements Serializable{
 
     public void setChinese(String chinese) {
         this.chinese = chinese;
-    }
+    }*/
 }
 /*
 1、序列化是干什么的？

@@ -9,16 +9,19 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2015/12/13.
  */
+//模型类  有两种方法创建
+// 1、传统的文件里定义域及相应的setter方法
+// 2、使用注解方式@。。。步骤如下1）在类前放@Data @AllArgsConstructor @NoArgsConstructor  2）setting，plugins，lombok，install plugin,重启idea  3）setting，Build。。compiler，Annotation Process，Enable Annotation Process
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-//模型类
 public class User implements Serializable {
     private Integer id;
     private String username;
     private String password;
 
-    /*public User() {
+    /*//传统的文件里定义域及相应的setter方法
+    public User() {
     }
 
     public User(Integer id, String username, String password) {

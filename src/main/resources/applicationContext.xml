@@ -3,9 +3,17 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-       <bean id="floppyWriter" class="ioc.c.FloppyWriter"/>
-       <bean id="usbWriter" class="ioc.c.USBWriter"/>
-       <bean id="business" class="ioc.c.Business">
-            <property name="deviceWriter" ref="usbWriter"/>
+       <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+              <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+              <property name="url" value="jdbc:mysql:///test"/>
+              <property name="username" value="root"/>
+              <property name="password" value=""/>
+       </bean>
+
+       <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+              <property name="dataSource" ref="dataSource"/>
+              <property name="mapperLocations" value="classpath*:mapper/*-mapper.xml"/>
+              <property name="typeAliasesPackage" value="com.bdc.model"/>
        </bean>
 </beans>
+

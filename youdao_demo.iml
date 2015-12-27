@@ -36,7 +36,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
     </content>
-    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
+    <orderEntry type="jdk" jdkName="1.8 (2)" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="Gradle: mysql:mysql-connector-java:5.1.37" level="project" />
     <orderEntry type="library" exported="" name="Gradle: javax:javaee-api:7.0" level="project" />
@@ -45,7 +45,6 @@
     <orderEntry type="library" exported="" name="Gradle: jstl:jstl:1.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.mybatis:mybatis:3.3.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.5.3" level="project" />
-    <orderEntry type="library" exported="" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.5.0" level="project" />
     <orderEntry type="library" exported="" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.5.3" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context:4.2.4.RELEASE" level="project" />
@@ -63,5 +62,6 @@
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-webmvc:4.2.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: commons-io:commons-io:2.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-web:4.2.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.mindrot:jbcrypt:0.3m" level="project" />
   </component>
 </module>

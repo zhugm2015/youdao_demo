@@ -1,29 +1,22 @@
-group 'test'
-version '1.0-SNAPSHOT'
-
-task wrapper(type: Wrapper) {
-  gradleVersion = '2.2'
-  distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
-}
 apply plugin: 'idea'
 apply plugin: 'java'
 apply plugin: 'war'
 
 sourceCompatibility = 1.5
+version = '1.0'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    //testCompile group: 'junit', name: 'junit', version: '4.11'
-    compile 'mysql:mysql-connector-java:5.1.37'
     compile 'javax:javaee-api:7.0'
+    compile 'mysql:mysql-connector-java:5.1.37'
     compile 'jstl:jstl:1.2'
-   // compile 'org.json:json:20151123'
+//    compile 'org.json:json:20151123'
     compile 'com.fasterxml.jackson.core:jackson-databind:2.5.3'
-    //compile 'com.google.code.gson:gson:2.5'
-    //compile 'com.alibaba:fastjson:1.2.7'
+//    compile 'com.google.code.gson:gson:2.5'
+//    compile 'com.alibaba:fastjson:1.2.7'
     compile 'org.mybatis:mybatis:3.3.0'
     compile 'commons-fileupload:commons-fileupload:1.3.1'
     compile 'org.springframework:spring-context:4.2.4.RELEASE'
@@ -32,5 +25,4 @@ dependencies {
     compile 'org.projectlombok:lombok:1.16.6'
     compile 'org.mybatis:mybatis-spring:1.2.3'
     compile 'org.mindrot:jbcrypt:0.3m'
-
 }

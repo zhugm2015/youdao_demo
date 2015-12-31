@@ -3,19 +3,50 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="word">
-    <insert id="add" parameterType="model.Word" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO word VALUES (NULL ,#{english},#{chinese})
-    </insert>
-    <select id="query" parameterType="model.Word" resultType="model.Word">
-        SELECT * FROM word
+    <resultMap id="map_word" type="word">
+        <id property="id" column="id"/>
+        <result property="english" column="english"/>
+        <result property="phoneticUk" column="phonetic_uk"/>
+        <result property="phoneticUs" column="phonetic_us"/>
+        <result property="audioUkMale" column="audio_uk_male"/>
+        <result property="audioUkFemale" column="audio_uk_female"/>
+        <result property="audioUsMale" column="audio_us_male"/>
+        <result property="audioUsFemale" column="audio_us_female"/>
+        <result property="extension" column="extension"/>
+        <result property="etymologyCn" column="etymology_cn"/>
+        <result property="level" column="level"/>
+        <collection property="wordDefinitions" ofType="worddefinition">
+            <id property="id" column="wd_id"/>
+            <result property="partOfSpeech" column="part_of_speech"/>
+            <result property="chinese" column="chinese"/>
+            <result property="wordId" column="word_id"/>
+        </collection>
+        <collection property="wordSentences" ofType="wordsentence">
+            <id property="id" column="ws_id"/>
+            <result property="partOfSpeech" column="ws_part_of_speech"/>
+            <result property="english" column="ws_english"/>
+            <result property="chinese" column="ws_chinese"/>
+            <result property="audioMale" column="audio_male"/>
+            <result property="audioFemale" column="audio_female"/>
+            <result property="source" column="source"/>
+            <result property="wordId" column="ws_word_id"/>
+        </collection>
+    </resultMap>
+    <select id="queryWordByEnglish" parameterType="java.lang.String" resultMap="map_word">
+        SELECT w.*,
+        wd.id AS wd_id,
+        wd.part_of_speech,
+        wd.chinese,
+        wd.word_id,
+        ws.id AS ws_id,
+        ws.part_of_speech AS 'ws_part_of_speech',
+        ws.english AS 'ws_english',
+        ws.chinese AS 'ws_chinese',
+        ws.audio_male,
+        ws.audio_female,
+        ws.source,
+        ws.word_id AS 'ws_word_id'
+        FROM word w, word_definition wd, word_sentence ws
+        WHERE w.id = wd.word_id AND w.id = ws.word_id AND w.english = #{english}
     </select>
-    <select id="search" parameterType="model.Word" resultType="model.Word">
-        SELECT * FROM word WHERE id=#{id}
-    </select>
-    <update id="update" parameterType="model.Word">
-        UPDATE word SET english=#{english},chinese=#{chinese}WHERE id=#{id}
-    </update>
-    <delete id="delete" parameterType="model.Word">
-        DELETE FROM word WHERE id=#{id}
-    </delete>
 </mapper>

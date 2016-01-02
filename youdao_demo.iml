@@ -63,5 +63,7 @@
     <orderEntry type="library" exported="" name="Gradle: commons-io:commons-io:2.2" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-web:4.2.4.RELEASE" level="project" />
     <orderEntry type="library" exported="" name="Gradle: org.mindrot:jbcrypt:0.3m" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.springframework:spring-context-support:4.2.4.RELEASE" level="project" />
+    <orderEntry type="library" exported="" name="Gradle: org.freemarker:freemarker:2.3.23" level="project" />
   </component>
 </module>
